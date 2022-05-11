@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import { withStyles } from "@mui/styles";
-
 import { Paper, Grid, Typography } from '@mui/material';
 
 const styles = {

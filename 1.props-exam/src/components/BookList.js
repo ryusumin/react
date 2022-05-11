@@ -14,7 +14,7 @@ class BookList extends Component {
 
         // const books = this.props.books;
         const { books } = this.props;
-        const bookItems = books.map(book => { // 배열
+        const bookItems = books.map((book) => { // 배열
             return (
                 <ListItem key={book.ISBN}>
                     <BookListItem book={book} />
