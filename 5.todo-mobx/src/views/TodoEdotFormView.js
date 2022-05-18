@@ -11,9 +11,9 @@ class TodoEditFormView extends PureComponent {
   render(){
 
     // TodoEditFormContainer에서 받아온 data
-    const { todo } = this.props;
+    const { todo, onSetTodoProps } = this.props;
 
-    const selectedDate = new Date();
+    // const selectedDate = new Date();
 
     return(
       <form noValidate>
@@ -24,7 +24,8 @@ class TodoEditFormView extends PureComponent {
               id="outlined-basic" 
               label="Title" 
               variant="standard"
-              value={ todo.title }
+              value={ todo && todo.title ? todo.title : '' }
+              onChange = {(event) => onSetTodoProps('title', event.target.value)}
               />
           </Grid>
           <Grid item xs={3}>
@@ -34,7 +35,8 @@ class TodoEditFormView extends PureComponent {
                 id="date-picker-dialog"
                 label="Date"
                 format="yyyy-MM-dd"
-                value={selectedDate}
+                value={todo && todo.date ? todo.date : null}
+                onChange= {(date) => onSetTodoProps('date', date.valueOf())}
                 // onChange={handleDateChange}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
