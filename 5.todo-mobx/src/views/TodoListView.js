@@ -2,10 +2,13 @@ import React, { PureComponent } from 'react';
 
 import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
 
-class TodoListView extends PureComponent {
-  render(){
+import { observer } from 'mobx-react';
 
-    const sample = [{id: 1, title:'title1', date:'date1'}, {id: 2, title:'title2', date:'date2'}]
+@observer
+class TodoListView extends PureComponent {
+  render() {
+
+    const { todos } = this.props;
 
     return (
       <TableContainer component={Paper} >
@@ -17,13 +20,21 @@ class TodoListView extends PureComponent {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sample.map( (todo ) => (
-              <TableRow key={todo.id} >
-                <TableCell>{todo.title}</TableCell>
-                <TableCell>{todo.date}</TableCell>
-              </TableRow>
-            ))}
-            
+            {
+              // 데이터가 없을 경우 empty 삼항연산자
+              Array.isArray(todos) && todos.length ? // 배열인지 내용을 가지고 있는지
+                todos.map((todo) => (
+                  <TableRow key={todo.id} >
+                    <TableCell>{todo.title}</TableCell>
+                    <TableCell>{todo.date}</TableCell>
+                  </TableRow>
+                ))
+                :
+                <TableRow>
+                  <TableCell>Empty</TableCell>
+                </TableRow>
+            }
+
           </TableBody>
         </Table>
       </TableContainer>

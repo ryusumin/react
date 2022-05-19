@@ -3,14 +3,22 @@ import TodoEditFormView from '../views/TodoEdotFormView';
 
 import {inject, observer} from 'mobx-react';
 import autobind from 'autobind-decorator';
+import generateId from '../IDGenerator';
 
 @inject('todoStore')
 @autobind //inject 위에 넣으면 error!!!
 @observer
 class TodoEditFormContainer extends Component {
-
+  
   onSetTodoProps(name, value) {
     this.props.todoStore.setTodoProps(name, value);
+  }
+
+  // 추가
+  onAddTodo() {
+    let { todo } = this.props.todoStore;
+    todo = {...todo, id: generateId(5)}
+    this.props.todoStore.addTodo(todo);
   }
 
 
@@ -24,6 +32,7 @@ class TodoEditFormContainer extends Component {
         // get todo
         todo = {todoStore.todo}
         onSetTodoProps = {this.onSetTodoProps}
+        onAddTodo = {this.onAddTodo}
       />
     )
   }

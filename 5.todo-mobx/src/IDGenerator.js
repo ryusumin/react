@@ -1,4 +1,5 @@
 
+// ID 생성
 function generateId(length) {
     var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
 
