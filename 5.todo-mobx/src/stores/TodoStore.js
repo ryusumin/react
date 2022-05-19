@@ -14,6 +14,9 @@ class TodoStore {
     @observable
     _todos = [];
 
+    @observable
+    _searchText = '';
+
     // get 메서드, 데이터만 만들어 놓고 return (다른 곳에 내보내기 위해서) 
     get todo() {
         return this._todo;
@@ -29,6 +32,10 @@ class TodoStore {
         return toJS(this._todos);
     }
 
+    get searchText() {
+        return this._searchText;
+    }
+
     // todo  설정
     @action
     setTodoProps(name, value) {
@@ -36,6 +43,12 @@ class TodoStore {
             ...this._todo,
             [name]: value,
         };
+    }
+
+    // 사용자가 입력한 값
+    @action
+    setSearchText(searchText) {
+        this._searchText = searchText;
     }
 
     @action

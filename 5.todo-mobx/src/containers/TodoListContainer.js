@@ -15,8 +15,10 @@ class TodoListContainer extends Component {
 
   render() {
 
-    const { todos } = this.props.todoStore;
+    let { todos, searchText } = this.props.todoStore;
     // console.log(todos);
+
+    todos = todos.filter((todo) => todo.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1);
 
     return (
       <TodoListView
